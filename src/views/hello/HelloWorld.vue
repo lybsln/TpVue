@@ -84,11 +84,25 @@
 </template>
 
 <script>
+import { login } from '@/api/login.js'
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  mounted: function() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData: async function() {
+      const res = await login()
+      if (res.data.code === 200) {
+        alert(res.data.data.username)
+      } else {
+        alert('请求失败')
+      }
     }
   }
 }
@@ -96,7 +110,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
