@@ -8,9 +8,9 @@ import Layout from '@/views/layout/Layout'
 
 export const constantRouterMap = [
   {
-    path: '/home',
-    name: 'HelloWorld',
-    component: _import('hello/HelloWorld')
+    path: '/login',
+    component: _import('login/index'),
+    hidden: true
   },
   {
     path: '',
