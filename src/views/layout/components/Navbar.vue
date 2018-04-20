@@ -19,8 +19,11 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
-          <i class="el-icon-caret-bottom"></i>
+          <a class="avatar-a">
+            <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
+            <font class="user-name">{{name}}</font>
+            <i class="el-icon-caret-bottom"></i>
+          </a>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
@@ -61,11 +64,7 @@ export default {
     ThemePicker
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'name',
-      'avatar'
-    ])
+    ...mapGetters(['sidebar', 'name', 'avatar'])
   },
   methods: {
     toggleSideBar() {
@@ -73,7 +72,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
-        location.reload()// In order to re-instantiate the vue-router object to avoid bugs
+        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
       })
     }
   }
@@ -91,7 +90,7 @@ export default {
     float: left;
     padding: 0 10px;
   }
-  .breadcrumb-container{
+  .breadcrumb-container {
     float: left;
   }
   .errLog-container {
@@ -101,8 +100,8 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    &:focus{
-     outline: none;
+    &:focus {
+      outline: none;
     }
     .right-menu-item {
       display: inline-block;
@@ -111,32 +110,61 @@ export default {
     .screenfull {
       height: 20px;
     }
-    .international{
+    .international {
       vertical-align: top;
     }
     .theme-switch {
       vertical-align: 15px;
     }
-    .avatar-container {
-      height: 50px;
-      margin-right: 30px;
-      .avatar-wrapper {
-        cursor: pointer;
-        margin-top: 5px;
-        position: relative;
-        .user-avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-        .el-icon-caret-bottom {
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
-      }
-    }
+  }
+
+  .avatar-container {
+    height: 50px;
+  }
+
+  .avatar-wrapper {
+    line-height: 50px;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    float: left;
+    margin-right: 20px;
+  }
+
+  .avatar-a {
+    display: block;
+    line-height: inherit;
+    text-align: center;
+    height: 100%;
+    width: auto;
+    min-width: 50px;
+    padding: 0 8px;
+    position: relative;
+  }
+
+  .user-avatar {
+    margin-top: 4px;
+    border-radius: 100%;
+    max-width: 42px;
+  }
+  .user-name {
+    max-width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: top;
+    line-height: 50px;
+    position: relative;
+  }
+  .el-icon-caret-bottom {
+    position: absolute;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+    width: 20px;
   }
 }
 </style>
