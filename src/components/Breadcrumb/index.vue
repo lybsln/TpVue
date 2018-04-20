@@ -45,9 +45,9 @@ export default {
     display: inline-block;
     font-size: 14px;
     line-height: 50px;
-    margin-left: 10px;
+    margin-left: 5px;
     .no-redirect {
-      color: #97a8be;
+      color: #636e7b;
       cursor: text;
     }
   }

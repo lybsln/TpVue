@@ -143,9 +143,9 @@ export default {
   }
 
   .user-avatar {
-    margin-top: 4px;
+    margin-top: 9px;
     border-radius: 100%;
-    max-width: 42px;
+    max-width: 32px;
   }
   .user-name {
     max-width: 100px;
@@ -157,11 +157,14 @@ export default {
     vertical-align: top;
     line-height: 50px;
     position: relative;
+    font-weight: 700;
+    font-size: 13px;
+    color: #636e7b;
   }
   .el-icon-caret-bottom {
     position: absolute;
     display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
     text-align: center;
     line-height: 50px;
     width: 20px;
