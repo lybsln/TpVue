@@ -17,12 +17,12 @@
         <theme-picker class="theme-switch right-menu-item"></theme-picker>
       </el-tooltip>
 
-      <el-dropdown class="avatar-container right-menu-item" trigger="click">
+      <el-dropdown class="avatar-container right-menu-item" trigger="click" placement="top">
         <div class="avatar-wrapper">
           <a class="avatar-a">
             <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
             <font class="user-name">{{name}}</font>
-            <i class="el-icon-caret-bottom"></i>
+            <i class="el-icon-arrow-down"></i>
           </a>
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -81,14 +81,14 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .navbar {
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
   border-radius: 0px !important;
   .hamburger-container {
-    line-height: 58px;
-    height: 50px;
+    line-height: 60px;
+    height: 59px;
+    width: 60px;
     float: left;
-    padding: 0 10px;
   }
   .breadcrumb-container {
     float: left;
@@ -119,55 +119,57 @@ export default {
   }
 
   .avatar-container {
-    height: 50px;
+    height: 59px;
+  }
+
+  .avatar-container:hover {
+    background-color: #feeeee
   }
 
   .avatar-wrapper {
-    line-height: 50px;
-    height: 50px;
+    line-height: 60px;
+    height: 60px;
     padding: 0;
     position: relative;
     float: left;
-    margin-right: 20px;
   }
 
   .avatar-a {
     display: block;
-    line-height: inherit;
     text-align: center;
     height: 100%;
     width: auto;
-    min-width: 50px;
-    padding: 0 8px;
-    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .user-avatar {
-    margin-top: 9px;
+    margin-top: 14px;
     border-radius: 100%;
     max-width: 32px;
   }
   .user-name {
-    max-width: 100px;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: left;
     vertical-align: top;
-    line-height: 50px;
+    line-height: 60px;
     position: relative;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 13px;
     color: #636e7b;
+    margin-left: 5px;
   }
-  .el-icon-caret-bottom {
-    position: absolute;
+  .el-icon-arrow-down {
+    position: relative;
     display: inline-block;
     font-size: 13px;
     text-align: center;
-    line-height: 50px;
-    width: 20px;
+    margin-left: 5px;
+    vertical-align:10px;
+
   }
 }
 </style>

@@ -60,6 +60,6 @@ export default {
   fill: #5a5e66;;
   width: 20px;
   height: 20px;
-  vertical-align: 10px;
+  vertical-align: 20px;
 }
 </style>

@@ -45,18 +45,26 @@ const user = {
 
   actions: {
     // 用户名登录
-    LoginByUsername({ commit }, userInfo) {
+    async LoginByUsername({ commit }, userInfo) {
       const username = userInfo.username.trim()
-      return new Promise((resolve, reject) => {
-        loginByUsername(username, userInfo.password).then(response => {
-          const data = response.data.data
-          commit('SET_TOKEN', data.token)
-          setToken(data.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
-      })
+      // return new Promise((resolve, reject) => {
+      //   loginByUsername(username, userInfo.password).then(response => {
+      //     const data = response.data.data
+      //     commit('SET_TOKEN', data.token)
+      //     setToken(data.token)
+      //     resolve()
+      //   }).catch(error => {
+      //     reject(error)
+      //   })
+      // })
+      const result = await loginByUsername(username, userInfo.password)
+      const info = result.data
+      if (info.code === 200) {
+        commit('SET_TOKEN', info.data.token)
+        setToken(info.data.token)
+        return true
+      }
+      return false
     },
 
     // 获取用户信息

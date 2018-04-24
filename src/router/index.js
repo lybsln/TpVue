@@ -20,6 +20,17 @@ export const constantRouterMap = [
       path: 'dashboard',
       component: _import('dashboard/index'),
       name: 'dashboard',
+      meta: { title: 'systemName', icon: 'logo', noCache: true, logo: true }
+    }]
+  },
+  {
+    path: '',
+    component: Layout,
+    redirect: 'dashboard',
+    children: [{
+      path: 'dashboard',
+      component: _import('dashboard/index'),
+      name: 'dashboard',
       meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
     }]
   }
@@ -32,5 +43,29 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-
+  {
+    path: '/icon',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: _import('svg-icons/index'),
+      name: 'icons',
+      meta: { title: 'icons', icon: 'icon', noCache: true }
+    }]
+  },
+  {
+    path: '/charts',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'charts',
+    meta: {
+      title: 'charts',
+      icon: 'chart'
+    },
+    children: [
+      { path: 'keyboard', component: _import('charts/keyboard'), name: 'keyboardChart', meta: { title: 'keyboardChart', noCache: true }},
+      { path: 'line', component: _import('charts/line'), name: 'lineChart', meta: { title: 'lineChart', noCache: true }},
+      { path: 'mixchart', component: _import('charts/mixChart'), name: 'mixChart', meta: { title: 'mixChart', noCache: true }}
+    ]
+  }
 ]

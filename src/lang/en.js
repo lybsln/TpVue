@@ -1,5 +1,6 @@
 export default {
   route: {
+    systemName: 'Test System',
     dashboard: 'Dashboard',
     introduction: 'Introduction',
     documentation: 'Documentation',
