@@ -4,6 +4,8 @@ import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 import { getToken } from '@/utils/auth' // getToken from cookie
+import menu from '@/utils/menu'
+var routers = []
 
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
@@ -26,8 +28,25 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('GetUserInfo').then(res => { // 拉取user_info
-          const roles = res.data.data.roles // note: roles must be a array! such as: ['editor','develop']
-          store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
+          // const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
+          const menus = res.data.menus
+          // const menus = '[{"path":"/icon","component":"Layout","children":[{"path":"index","component":"svg-icons/index","name":"icons","meta":{"title":"icons","icon":"icon","noCache":true}}]}]'
+          // routers.push(
+          //   {
+          //     path: '/icon',
+          //     component: Layout,
+          //     children: [
+          //       {
+          //         path: 'index',
+          //         component: _import('svg-icons/index'),
+          //         name: 'icons',
+          //         meta: { title: 'icons', icon: 'icon', noCache: true }
+          //       }
+          //     ]
+          //   }
+          // )
+          menu(routers, JSON.parse(menus))
+          store.dispatch('GenerateRoutes', { routers }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })

@@ -59,7 +59,7 @@ const user = {
       // })
       const result = await loginByUsername(username, userInfo.password)
       const info = result.data
-      if (info.code === 200) {
+      if (info.code === 0) {
         commit('SET_TOKEN', info.data.token)
         setToken(info.data.token)
         return true
@@ -68,22 +68,32 @@ const user = {
     },
 
     // 获取用户信息
-    GetUserInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        getUserInfo(state.token).then(response => {
-          if (!response.data) { // 由于mockjs 不支持自定义状态码只能这样hack
-            reject('error')
-          }
-          const data = response.data.data
-          commit('SET_ROLES', data.roles)
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
-          commit('SET_INTRODUCTION', data.introduction)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
-      })
+    async GetUserInfo({ commit, state }) {
+      const result = await getUserInfo(state.token)
+      const info = result.data
+      if (info.code === 0) {
+        commit('SET_ROLES', info.data.roles)
+        commit('SET_NAME', info.data.name)
+        commit('SET_AVATAR', info.data.avatar)
+        commit('SET_INTRODUCTION', info.data.introduction)
+        return info
+      }
+      return false
+      // return new Promise((resolve, reject) => {
+      //   getUserInfo(state.token).then(response => {
+      //     if (!response.data) { // 由于mockjs 不支持自定义状态码只能这样hack
+      //       reject('error')
+      //     }
+      //     const data = response.data.data
+      //     commit('SET_ROLES', data.roles)
+      //     commit('SET_NAME', data.name)
+      //     commit('SET_AVATAR', data.avatar)
+      //     commit('SET_INTRODUCTION', data.introduction)
+      //     resolve(response)
+      //   }).catch(error => {
+      //     reject(error)
+      //   })
+      // })
     },
 
     // 第三方验证登录

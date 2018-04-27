@@ -37,6 +37,9 @@
             </el-dropdown-item>
           </a>
           <el-dropdown-item divided>
+            <span @click="updateRouterConfig" style="display:block;">{{$t('route.updateConfig')}}</span>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
             <span @click="logout" style="display:block;">{{$t('navbar.logOut')}}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -53,6 +56,7 @@ import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemePicker'
+import { routeList } from '@/api/route'
 
 export default {
   components: {
@@ -74,6 +78,12 @@ export default {
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // In order to re-instantiate the vue-router object to avoid bugs
       })
+    },
+    async updateRouterConfig() {
+      const result = await routeList()
+      const menus = result.data.data
+      // Update the navigation file
+      console.log(menus)
     }
   }
 }
