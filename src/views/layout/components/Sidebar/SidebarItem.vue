@@ -1,5 +1,6 @@
 <template>
   <div class="menu-wrapper">
+ 
     <template v-for="item in routes" v-if="!item.hidden&&item.children">
       
       <router-link v-if="hasOneShowingChildren(item.children) && !item.children[0].children&&!item.alwaysShow" :to="item.path+'/'+item.children[0].path" :key="item.children[0].name">
@@ -7,7 +8,7 @@
         <template v-if="item.children[0].meta.logo">
           <el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':!isNest}" style="height:60px;line-height:60px;text-color:#ffffff;">
             <svg-icon v-if="item.children[0].meta&&item.children[0].meta.icon" :icon-class="item.children[0].meta.icon" style="width:24px;height:24px;margin-left:-4px;margin-right:11px;vertical-align: -0.55em;"></svg-icon>
-            <span v-if="item.children[0].meta&&item.children[0].meta.title" style="font-size:18px;font-weight:400;font-family:'Source Sans Pro', sans-serif;text-rendering: optimizeLegibility;">{{generateTitle(item.children[0].meta.title)}}</span>
+            <span v-if="item.children[0].meta&&item.children[0].meta.title" class="span-logo"  style="font-size:18px;font-weight:400;font-family:'Source Sans Pro', sans-serif;text-rendering: optimizeLegibility;">{{generateTitle(item.children[0].meta.title)}}</span>
           </el-menu-item>
         </template>
           <!-- 不是logo -->

@@ -70,6 +70,12 @@
           top: 0px;
           background-color: $subMenuBg!important;
           opacity: 1;
+          .logo {
+            visibility: hidden;
+          }
+        }
+        .span-logo {
+          visibility: hidden;
         }
       }
     }
@@ -104,9 +110,9 @@
   .el-submenu .el-menu-item {
     min-width: 200px!important;
     background-color: $subMenuBg!important;
-    &:hover {
-      background-color: $menuHover!important;
-    }
+    // &:hover {
+    //   background-color: $menuHover!important;
+    // }
   }
   
   .el-menu--collapse .el-menu .el-submenu{
