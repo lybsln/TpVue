@@ -10,7 +10,6 @@ const user = {
     name: '',
     avatar: '',
     introduction: '',
-    roles: [],
     setting: {
       articlePlatform: []
     }
@@ -37,9 +36,6 @@ const user = {
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
-    },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
     }
   },
 
@@ -72,10 +68,9 @@ const user = {
       const result = await getUserInfo(state.token)
       const info = result.data
       if (info.code === 0) {
-        commit('SET_ROLES', info.data.roles)
         commit('SET_NAME', info.data.name)
         commit('SET_AVATAR', info.data.avatar)
-        commit('SET_INTRODUCTION', info.data.introduction)
+        commit('SET_INTRODUCTION', info.data.intro)
         return info
       }
       return false
@@ -115,7 +110,6 @@ const user = {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
           removeToken()
           resolve()
         }).catch(error => {
@@ -140,7 +134,6 @@ const user = {
         setToken(role)
         getUserInfo(role).then(response => {
           const data = response.data
-          commit('SET_ROLES', data.roles)
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)
           commit('SET_INTRODUCTION', data.introduction)

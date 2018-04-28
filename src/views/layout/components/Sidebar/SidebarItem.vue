@@ -32,7 +32,7 @@
           <router-link v-else :to="item.path+'/'+child.path" :key="child.name">
             <el-menu-item :index="item.path+'/'+child.path">
               <svg-icon v-if="child.meta&&child.meta.icon" :icon-class="child.meta.icon"></svg-icon>
-              <span v-if="child.meta&&child.meta.title">{{generateTitle(child.meta.title)}}</span>
+              <span v-if="child.meta&&child.meta.title" style="margin-left:14px;">{{generateTitle(child.meta.title)}}</span>
             </el-menu-item>
           </router-link>
         </template>

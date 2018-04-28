@@ -2,7 +2,7 @@
  * @Author: Kamil
  * @Date: 2018-04-18 15:28:33
  * @Last Modified by: Kamil
- * @Last Modified time: 2018-04-24 10:37:34
+ * @Last Modified time: 2018-04-28 17:06:58
  */
 import http from '@/utils/http.js'
 
@@ -28,7 +28,7 @@ export function getUserInfo(token) {
   const data = {
     token
   }
-  return http.post('/admin/login/userInfo', data)
+  return http.post('/admin/user/userInfo', data)
 }
 
 /**
